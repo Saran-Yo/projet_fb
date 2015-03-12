@@ -7,20 +7,15 @@
 	
 	function home(){
 
-		$user_profile = (new FacebookRequest($session, 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
+		$user_profile = (new FacebookRequest($_SESSION["session"], 'GET', '/me'))->execute()->getGraphObject(GraphUser::className());
       	//var_dump($user_profile);
 
 		require('./model/user_bd.php');
 
 		if(!userExist($user_profile)){
 			saveUser($user_profile);
-			require("./index.php");
-		}else{
-			require("./view/home.php");
 		}
-
-		
-	    
+		require("./view/home.php");
 	}
 
 ?>

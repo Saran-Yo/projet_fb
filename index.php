@@ -18,6 +18,7 @@
   $helper= new FacebookRedirectLoginHelper($redirectUrl);
   try{
     $session= $helper->getSessionFromRedirect();
+    $_SESSION["session"]=$session;
   }catch(FacebookRequestException $ex){
     
   }catch(\Exception $ex){
