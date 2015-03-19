@@ -1,16 +1,9 @@
-<?php
 
-		echo "hello world !"
+<?php require './view/includes/header.php'; ?>
 
-		/*$request = new FacebookRequest(
-			$session,
-			'GET',
-			'/wefound404/feed'
-		);
-		$response = $request->execute();
-		$graphObjectArray = $response->getGraphObject()->asArray();
+<div class="container" id="mainContainer">
+	<p>Etes-vous prêt?</p>
+	<button type="button" class="btn btn-danger">Démarrer le jeu</button>
+</div>
 
-      	var_dump($graphObjectArray);*/
-
-
-?>
+<?php require './view/includes/footer.php'; ?>

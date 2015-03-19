@@ -25,32 +25,20 @@
 
   }
 
+  if(isset($session)){
+    if (isset($_GET['ctrl']) && isset($_GET['action'])){
+      $ctrl = htmlspecialchars($_GET['ctrl']);
+      $action = htmlspecialchars($_GET['action']);
+    } else {
+      $ctrl = 'HomeController';
+      $action = 'home';
+    } 
+    require("./controller/".$ctrl.".php");
+    $action();
 
-?>
-  <html>
-    <head>
-      <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    </head>
-    <body>
-    <?php
-      if(isset($session)){
-        if (isset($_GET['ctrl']) && isset($_GET['action'])){
-          $ctrl = htmlspecialchars($_GET['ctrl']);
-          $action = htmlspecialchars($_GET['action']);
-        } else {
-          $ctrl = 'HomeController';
-          $action = 'home';
-        } 
-        require("./controller/".$ctrl.".php");
-        $action();
-
-      }else{
-        $loginUrl=$helper->getLoginUrl($permission);
-        echo '<a href="'.$loginUrl.'">connectez-vous</a>';
-      }
+  }else{
+    $loginUrl=$helper->getLoginUrl($permission);
+    echo '<a href="'.$loginUrl.'">connectez-vous</a>';
+  }
   
 ?>
-
-</body>
-
-</html>
