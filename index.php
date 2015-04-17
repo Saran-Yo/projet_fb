@@ -11,8 +11,12 @@ use Facebook\FacebookSession;
 use Facebook\FacebookRedirectLoginHelper;
 use Facebook\FacebookRequest;
 use Facebook\GraphUser;
-use Facebook\FacebookRequestException;
+use Facebook\FacebookRequestException; 
 
+?>
+
+
+<?php
 require('./service/gameService.php');
   
 session_start();
@@ -47,7 +51,15 @@ if(!isset($_SESSION["session"])){
   }else{
     $helper= new FacebookRedirectLoginHelper($redirectUrl);
     $loginUrl=$helper->getLoginUrl($permission);
-    echo '<a href="'.$loginUrl.'">connectez-vous</a>';
+
+    ?>
+
+    <?php
+    echo '<body style="background-color:black">';
+    echo '<div class="container">';
+    echo '<div style="height:560px;padding-top:200px;padding-left:45%;"><a href="'.$loginUrl.'">connectez-vous</a></div>';
+    echo '</div>';
+    echo '</body>';
   }
   
 ?>

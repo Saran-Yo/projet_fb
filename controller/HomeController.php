@@ -42,4 +42,18 @@
 			echo '{"finished":true,"score":'.$_SESSION["game"]->score.'}';
 	}
 
+	function publishScore(){
+		require('./service/getFBUserService.php');
+		$user_profile = getFBUser();
+
+		$userComment="Votre score est : ";
+		if(isset($_GET["userComment"]))
+			$userComment=$_GET["userComment"];
+
+		$linkToShare="www.eira.fr";
+		$message=$userComment."".$_SESSION["game"]->score;
+		
+		return publishResult($user_profile,$linkToShare,$message);
+	}
+
 ?>

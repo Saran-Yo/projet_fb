@@ -32,7 +32,7 @@
 		return new Post($json->name,$temp);
 	}
 
-	//convert each json 
+	//jsonToPost is called for each element of the json Array
 	function convertJsonToPostList($json){
 		return array_map("jsonToPost", $json);
 	}
@@ -47,19 +47,22 @@
 		$response = $request->execute();
 		return  $response->getGraphObject()->asArray();
 	}
-/*
-	function publishResult($wallLink){
+
+	//to publish score
+	function publishResult($user,$linkToShare,$message){
 		$request = new FacebookRequest(
-  		$session,
+  		$_SESSION["session"],
   		'POST',
   		'/me/feed',
   		array (
-    		'message' => 'This is a test message',
-    		'link'=>'this is a link'
-
+    		'message' => $message,
+    		'link'=>$linkToShare
   		));
+
+  		$response = $request->execute();
+		return $response->getGraphObject();
 	}
 
-*/
+
 
 ?>
