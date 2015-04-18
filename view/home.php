@@ -3,7 +3,22 @@
 <?php require './view/includes/header.php'; ?>
 
  <div id="fb-root"></div>
-<script>(function(d, s, id) {
+<script>
+
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '<?php echo $app_id;?>',
+          xfbml      : true,
+          version    : 'v2.3'
+        });
+
+        FB.ui({
+          method: 'pagetab',
+          redirect_uri: '<?php echo $url_redirect;?>'
+        }, function(response){});
+      };
+
+(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
   js = d.createElement(s); js.id = id;
