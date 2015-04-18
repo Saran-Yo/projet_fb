@@ -5,18 +5,7 @@
  <div id="fb-root"></div>
 <script>
 
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '<?php echo $appId;?>',
-          xfbml      : true,
-          version    : 'v2.3'
-        });
-
-        FB.ui({
-          method: 'pagetab',
-          redirect_uri: '<?php echo $redirectUrl;?>'
-        }, function(response){});
-      };
+      
 
 (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
@@ -24,7 +13,14 @@
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.3&appId=680552975386696";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, 'script', 'facebook-jssdk'));
+
+FB.ui({
+          method: 'pagetab',
+          redirect_uri: '<?php echo $redirectUrl;?>'
+        }, function(response){});
+
+</script>
 
 <div class="container" id="mainContainer">
 	<div id="questionBloc" class="row">
