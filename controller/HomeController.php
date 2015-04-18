@@ -51,7 +51,7 @@
 			$userComment=$_GET["userComment"];
 
 		$linkToShare="www.eira.fr";
-		$message=$userComment."".$_SESSION["game"]->score;
+		$message=$userComment."--- Score : ".$_SESSION["game"]->score;
 		
 		return publishResult($user_profile,$linkToShare,$message);
 	}
