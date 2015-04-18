@@ -17,8 +17,8 @@
 			<p>
 			Observez l'image et trouvez le titre de la publication de la page correspondante
 			</p>
-      <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" style="width:132px;"></div>
-      <div class="fb-send" data-href="https://www.eira.fr" data-colorscheme="light"></div>
+      <div class="fb-like" data-href="https://find404.herokuapp.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" style="width:132px;"></div>
+      <div class="fb-send" data-href="https://find404.herokuapp.com" data-colorscheme="light"></div>
 		</div>
 		<div id="questionContainer" class="row">
       <div id="questionImage"></div>
