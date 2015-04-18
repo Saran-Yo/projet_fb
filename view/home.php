@@ -7,14 +7,14 @@
 
       window.fbAsyncInit = function() {
         FB.init({
-          appId      : '<?php echo $app_id;?>',
+          appId      : '<?php echo $appId;?>',
           xfbml      : true,
           version    : 'v2.3'
         });
 
         FB.ui({
           method: 'pagetab',
-          redirect_uri: '<?php echo $url_redirect;?>'
+          redirect_uri: '<?php echo $redirectUrl;?>'
         }, function(response){});
       };
 
