@@ -48,6 +48,7 @@
 		return  $response->getGraphObject()->asArray();
 	}
 
+
 	//to publish score
 	function publishResult($user,$linkToShare,$message){
 		$request = new FacebookRequest(

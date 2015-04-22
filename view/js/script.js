@@ -14,8 +14,6 @@ function prepareView(question){
 }
 
 
-
-
 function publishScore(userComment){
 	$.ajax({
 			url: "./index.php?ctrl=HomeController&action=publishScore",
@@ -32,16 +30,27 @@ $("#publishScore").click(function(){
 	$("#myModal").modal("hide");
 	var userComment=$("#myModal_userComment").val();
 	publishScore(userComment);
-	window.location.href="./index.php?ctrl=HomeController&action=home";
 });
 
 
 $("#dontPublishScore").click(function(){
-	window.location.href="./index.php?ctrl=HomeController&action=home";
+	$("#myModal").modal("hide");
+});
+
+$("#btn_replay").click(function(){
+	replay();
 });
 
 
 function askToPublishScore(question){
+	$.ajax({
+			url: "./index.php?ctrl=HomeController&action=publishActionStatus"
+		}).done(function(data) {
+			if(data=="false"){
+				$("#publishScore").css({"display":"none"});
+				$("#myModal_userComment").css({"disabled":"disabled"});
+			}
+	});
 	$("#scoreBox").html('Votre score est<br/><span style="font-size:20px;font-weight:bold;">'+question.score+'</span>');
 	$("#myModal_userComment").val("");
 	$("#myModal").modal("show");
@@ -49,18 +58,76 @@ function askToPublishScore(question){
 
 
 function showScore(question){
-	$("#questionAnswers").html('votre score est : '+question.score);
-
-	//if(question.score>=2)
-	//	$("#mainContainer").fireworks();
+	$("#questionAnswers").html('');
+	$("#btn_nextQuestion").hide();
+	$("#btn_replay").css({"display":"block"});
+	$("#questionContainer").html("");
+	getBestScores();
+	if(question.score>=5)
+		$("#questionContainer").fireworks();
 	askToPublishScore(question);
 }
 
+
+function getBestScores(){
+	$.ajax({
+			url: "./index.php?ctrl=HomeController&action=getBestScores"
+		}).done(function(data) {
+			data=JSON.parse(data);
+			var thead=$('<thead>');
+			$(thead).append('<tr><th>#</th><th>Nom</th><th>Score</th></tr>');
+			var tbody=$('<tbody>');
+			var tr;
+			for(var i=0;i<data.length;++i){
+				if(i==0)
+					tr=$('<tr class="danger">');
+				else
+					tr=$('<tr>');
+				$(tr).append('<td>'+(i+1)+'</td><td>'+data[i]["first_name"]+' '+data[i]["last_name"]+'</td><td>'+data[i]["score"]+'</td>');
+				$(tbody).append(tr);
+			}
+			$("#scoreTable").html('');
+			$("#scoreTable").append(thead);
+			$("#scoreTable").append(tbody);
+          
+	});
+}
+
+
+function replay(){
+	window.location.href="./index.php?ctrl=HomeController&action=home";
+}
+
+
 $(document).ready(function(){
-	
-	/*setTimeout(function() {
-   		$("#mainContainer").fireworks();
-	});*/
+
+	getBestScores();
+
+	window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '680552975386696',
+          xfbml      : true,
+          version    : 'v2.3',
+          oauth      : true
+        });
+
+        /*FB.ui({
+          method: 'pagetab',
+          redirect_uri: 'https://find404.herokuapp.com/'
+        }, function(response){});*/
+
+
+      };
+
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/fr_FR/sdk.js";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+
+
 
 	$("#startGame").click(function(){
 		$.ajax({

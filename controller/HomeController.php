@@ -15,7 +15,7 @@
 
 	//need minimum 20 posts of type link
 	function initGame(){
-		$_SESSION["game"]=getGame("/wefound404/feed/?limit=100",20,3);
+		$_SESSION["game"]=getGame("/wefound404/feed/?limit=100",10,3);
 		nextQuestion();
 	}
 
@@ -36,17 +36,24 @@
 		}
 		
 		$nextQuestion=getNextQuestion();
-		if($nextQuestion!=null && $_SESSION["game"]->nbrAskedQuestions<=2){
+		if($nextQuestion!=null){
 			echo questionToJson($nextQuestion);
-		}else
+		}else{
+			require('./service/getFBUserService.php');
+			$user_profile = getFBUser();
+			require('./model/user_bd.php');
+			$user=getUser($user_profile);
+			require('./model/game_bd.php');
+			saveUserScoreBd($user,$_SESSION["game"]->score);
 			echo '{"finished":true,"score":'.$_SESSION["game"]->score.'}';
+		}
 	}
 
 	function publishScore(){
 		require('./service/getFBUserService.php');
 		$user_profile = getFBUser();
 
-		$userComment="Votre score est : ";
+		$userComment="";
 		if(isset($_GET["userComment"]))
 			$userComment=$_GET["userComment"];
 
@@ -54,6 +61,33 @@
 		$message=$userComment."--- Score : ".$_SESSION["game"]->score;
 		
 		return publishResult($user_profile,$linkToShare,$message);
+	}
+
+	function getBestScores(){
+		require('./model/game_bd.php');
+		echo json_encode(getAllBestScores());
+	}
+
+
+	function publishActionStatus(){
+		if(userCanPublish())
+			echo "true";
+		else
+			echo "false";
+	}
+
+	function userCanPublish(){
+		require('./service/getFBUserService.php');
+		$permissions=getUserPermissions()->asArray();
+		$permissionAccepted=false;
+		for($i=0;$i<count($permissions);++$i){
+			if($permissions[$i]->permission=="publish_actions"){
+				if($permissions[$i]->status=="granted")
+					$permissionAccepted=true;
+				break;
+			}
+		}
+		return $permissionAccepted;
 	}
 
 ?>

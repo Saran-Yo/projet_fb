@@ -9,4 +9,15 @@
 		return (new FacebookRequest($_SESSION["session"], 'GET', '/'.$userId))->execute()->getGraphObject(GraphUser::className());
 	}
 
+	function getUserPermissions(){
+		$request = new FacebookRequest(
+	  		$_SESSION["session"],
+	  		'GET',
+	  		'/me/permissions'
+		);
+		$response = $request->execute();
+		$graphObject = $response->getGraphObject();
+		return $graphObject;
+	}
+
 ?>

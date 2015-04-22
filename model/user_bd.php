@@ -20,6 +20,29 @@
 	}
 
 
+	function getUser($user_profile){
+		require("./model/db_connect.php");
+		$userId=$user_profile->getId();
+		$stmt = $dbh->prepare("select * from utilisateur where fb_id=:fbId");
+      	$stmt->bindParam(':fbId',$userId);
+      	$stmt->execute();
+      	$result=$stmt->fetch();
+      	if (!empty($result)){
+	      	require("./model/User.php");
+	      	$user=new User();
+	      	$user->id=$result["id"];
+	      	$user->fbId=$result["fb_id"];
+	      	$user->firstName=$result["first_name"];
+	      	$user->lastName=$result["last_name"];
+	      	$user->email=$result["email"];
+
+	      	return $user;
+	     }
+	     
+	     return null;
+	}
+
+
 	function saveUser($user_profile){
 		require("./model/db_connect.php");
 		$userId=$user_profile->getId();

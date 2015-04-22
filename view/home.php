@@ -2,62 +2,92 @@
 
 <?php require './view/includes/header.php'; ?>
 
- <div id="fb-root"></div>
-<script>
 
-      window.fbAsyncInit = function() {
-        FB.init({
-          appId      : '<?php echo $appId;?>',
-          xfbml      : true,
-          version    : 'v2.3'
-        });
-
-        FB.ui({
-          method: 'pagetab',
-          redirect_uri: '<?php echo $redirectUrl;?>'
-        }, function(response){});
-      };
-
-(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.3&appId=680552975386696";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-<div class="container" id="mainContainer">
-	<div id="questionBloc" class="row">
-		<div id="gameAdvice" class="row">
-			<p>
-			Observez l'image et trouvez le titre de la publication de la page correspondante
-			</p>
-      <div class="fb-like" data-href="https://find404.herokuapp.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="true" style="width:132px;"></div>
-      <div class="fb-send" data-href="https://find404.herokuapp.com" data-colorscheme="light"></div>
-		</div>
-		<div id="questionContainer" class="row">
-      <div id="questionImage"></div>
-      <div id="questionImageContainer">
-          <img src="./view/img/frame.png" id="frame"/>
+<section>
+  <div class="jumbotron" style="margin-top:-20px;">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-lg-12">
+          <h1>Find404</h1>
+          <p>Toujours plus amusant, toujours plus intéressant !</p>
+        </div>
       </div>
-			<div id="questionAnswers"></div>
-		</div>
-		<div class="row" id="buttonContainer">
-			<button type="button" class="btn btn-danger col-md-12" id="startGame">Démarrer le jeu</button>
-			<button type="button" class="btn btn-danger col-md-12" id="btn_nextQuestion">Suivant</button>
-		</div>
-	</div>
-	<div id="footerBloc" class="row"></div>
-</div>
-
-
-
-
-
-
-
-
-
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">A propos de Find404</div>
+          <div class="panel-body">
+            <h1 class="page-header"><small>Instructions</small></h1>
+            <blockquote>
+                  Observez l'image puis sélectionnez la phrase qui correspond à l'image, tout simplement !<p> <br/> A vous de jouer !</p>
+            </blockquote>
+            <h1 class="page-header"><small>Aimez, partagez et envoyez !</small></h1>
+            <div id="fb-root"></div>
+            <table class="table">
+              <tr>
+                <td>
+                  <div class="fb-like" data-href="https://find404.herokuapp.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="false" style="width:132px;"></div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="fb-share-button" data-href="https://find404.herokuapp.com" data-layout="button"></div>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <div class="fb-send" data-href="https://find404.herokuapp.com" data-colorscheme="light"></div>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="panel panel-default" id="tables">
+          <div class="panel-heading">Meilleurs scores</div>
+            <div class="panel-body">
+              <table class="table table-hover" id="scoreTable">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nom</th>
+                    <th>Score</th>
+                  </tr>
+                </thead>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-9">
+          <div class="panel panel-default">
+            <div class="panel-heading">&nbsp;</div>
+            <div class="panel-body" id="questionContainer">
+              <div class="row">
+                <div class="class=col-lg-6">
+                  <div id="questionImage"></div>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="class=col-lg-6">
+                  <div id="questionAnswers"></div>
+                </div>
+              </div>
+            </div>
+            <div class="panel-heading">
+              <div class="row" id="buttonContainer">
+                <button type="button" class="btn btn-primary col-md-12" id="startGame">Démarrer le jeu</button>
+                <button type="button" class="btn btn-primary col-md-12" id="btn_nextQuestion">Suivant</button>
+                <button type="button" class="btn btn-primary col-md-12" id="btn_replay">Rejouer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /.row-->
+    </div>
+  </section>
 
 
 <!-- Modal -->
@@ -66,7 +96,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">find404</h4>
+        <h4 class="modal-title" id="myModalLabel">Votre message</h4>
       </div>
       <div class="modal-body">
       		<div class="row">
