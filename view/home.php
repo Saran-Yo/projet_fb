@@ -29,17 +29,17 @@
             <table class="table">
               <tr>
                 <td>
-                  <div class="fb-like" data-href="https://find404.herokuapp.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="false" style="width:132px;"></div>
+                  <div class="fb-like" data-href="https://www.find404.herokuapp.com" data-layout="standard" data-action="like" data-show-faces="true" data-share="false" style="width:132px;"></div>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fb-share-button" data-href="https://find404.herokuapp.com" data-layout="button"></div>
+                  <div class="fb-share-button" data-href="https://www.find404.herokuapp.com" data-layout="button"></div>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <div class="fb-send" data-href="https://find404.herokuapp.com" data-colorscheme="light"></div>
+                  <div class="fb-send" data-href="https://www.find404.herokuapp.com" data-colorscheme="light"></div>
                 </td>
               </tr>
             </table>
