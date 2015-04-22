@@ -57,7 +57,7 @@
 		if(isset($_GET["userComment"]))
 			$userComment=$_GET["userComment"];
 
-		$linkToShare="www.eira.fr";
+		$linkToShare="https://find404.herokuapp.com";
 		$message=$userComment."--- Score : ".$_SESSION["game"]->score;
 		
 		return publishResult($user_profile,$linkToShare,$message);
