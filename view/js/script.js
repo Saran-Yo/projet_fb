@@ -111,10 +111,10 @@ $(document).ready(function(){
           oauth      : true
         });
         
-        FB.ui({
+        /*FB.ui({
           method: 'pagetab',
           redirect_uri: 'https://find404.herokuapp.com/'
-        }, function(response){});
+        }, function(response){});*/
 			
 
       };
