@@ -113,7 +113,7 @@ $(document).ready(function(){
         
         FB.ui({
           method: 'pagetab',
-          redirect_uri: 'https://www.find404.herokuapp.com'
+          redirect_uri: 'https://find404.herokuapp.com/'
         }, function(response){});
 			
 
