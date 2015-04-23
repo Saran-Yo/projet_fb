@@ -110,12 +110,12 @@ $(document).ready(function(){
           version    : 'v2.3',
           oauth      : true
         });
-
+        
         FB.ui({
           method: 'pagetab',
-          redirect_uri: 'https://www.facebook.com/find404'
+          redirect_uri: 'https://www.find404.herokuapp.com'
         }, function(response){});
-
+			
 
       };
 
